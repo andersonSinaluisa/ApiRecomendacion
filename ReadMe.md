@@ -13,20 +13,21 @@ Una instancia de PostgreSQL para almacenar los datos de la aplicación.
 Configuración
 Antes de ejecutar la aplicación, se debe configurar la conexión a la base de datos en el archivo appsettings.json, especificando el nombre del servidor, puerto, nombre de la base de datos, usuario y contraseña:
 
-Copy code
+`
 {
   "ConnectionStrings": {
     "DefaultConnection": "Host=nombre_servidor;Port=puerto;Database=nombre_db;Username=usuario;Password=contraseña"
   },
   ...
 }
+`
 También es posible configurar la duración del token JWT y la clave secreta utilizada para firmar los tokens:
 
-Copy code
+`
 {
-  "JwtSettings": {
+
     "SecretKey": "clave_secreta",
-    "ExpirationInMinutes": 60
-  },
+     "SecretJwt": "clave_jwt"
+
   ...
-}
+}`
