@@ -27,6 +27,10 @@ public class DatabaseContext : DbContext
 
 
     public DbSet<Token>? Tokens { get; set; }
+
+    public DbSet<Recommendation>? Recommendations { get; set; }
+
+    public DbSet<AttributeEntityProfile>? AttributeEntityProfiles { get; set; }
     
 
     protected override void OnModelCreating(ModelBuilder modelBuilder){

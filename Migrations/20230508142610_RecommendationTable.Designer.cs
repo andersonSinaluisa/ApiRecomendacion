@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using api_recomendation.Config.DatabaseContext;
@@ -11,9 +12,11 @@ using api_recomendation.Config.DatabaseContext;
 namespace api_recomendation.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230508142610_RecommendationTable")]
+    partial class RecommendationTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -479,18 +482,18 @@ namespace api_recomendation.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 5, 8, 9, 44, 47, 273, DateTimeKind.Local).AddTicks(8084),
+                            CreatedAt = new DateTime(2023, 5, 8, 9, 26, 10, 598, DateTimeKind.Local).AddTicks(1773),
                             Description = "admin",
                             Name = "admin",
-                            UpdatedAt = new DateTime(2023, 5, 8, 9, 44, 47, 273, DateTimeKind.Local).AddTicks(8101)
+                            UpdatedAt = new DateTime(2023, 5, 8, 9, 26, 10, 598, DateTimeKind.Local).AddTicks(1784)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 5, 8, 9, 44, 47, 273, DateTimeKind.Local).AddTicks(8106),
+                            CreatedAt = new DateTime(2023, 5, 8, 9, 26, 10, 598, DateTimeKind.Local).AddTicks(1787),
                             Description = "user",
                             Name = "user",
-                            UpdatedAt = new DateTime(2023, 5, 8, 9, 44, 47, 273, DateTimeKind.Local).AddTicks(8107)
+                            UpdatedAt = new DateTime(2023, 5, 8, 9, 26, 10, 598, DateTimeKind.Local).AddTicks(1788)
                         });
                 });
 
@@ -715,9 +718,6 @@ namespace api_recomendation.Migrations
 
                     b.Property<int>("EntityId")
                         .HasColumnType("integer");
-
-                    b.Property<bool>("IsAccepted")
-                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsRecommended")
                         .HasColumnType("boolean");

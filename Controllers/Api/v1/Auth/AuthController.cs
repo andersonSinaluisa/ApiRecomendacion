@@ -26,7 +26,9 @@ public class AuthController : ControllerBase{
         _configuration = configuration;
     }
 
-
+    //<summary>
+    //login
+    //</summary>
     [HttpPost("login")]
     [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest){
