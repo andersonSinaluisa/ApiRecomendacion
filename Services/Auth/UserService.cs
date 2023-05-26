@@ -3,18 +3,27 @@ using api_recomendation.Models.Auth;
 using api_recomendation.HttpModels.V1.Auth;
 using System.Security.Cryptography;
 using BCrypt.Net;
-
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 namespace api_recomendation.Services.Auth;
 
 
 public class UserService: IUserService{
 
     DatabaseContext _context;
-    private readonly ILogger<UserService> _logger;
+    IConfiguration _configuration;
 
-    public UserService(DatabaseContext context, ILogger<UserService> logger){
+    public UserService(DatabaseContext context, IConfiguration configuration){
         _context = context;
-        _logger = logger;
+        _configuration = configuration;
     }
 
     public User Create(RegisterRequest user){
@@ -97,6 +106,10 @@ public class UserService: IUserService{
     }
 
     public void CreateToken(int userId, string token,DateTime expiresAt){
+        if (_context.Tokens.Where(t => t.UserId == userId).FirstOrDefault() != null){
+            UpdateToken(userId, token, expiresAt);
+            return;
+        }
         Token _token = new Token{
             Value = token,
             ExpiresAt = expiresAt,
@@ -105,7 +118,36 @@ public class UserService: IUserService{
         _context.Tokens.Add(_token);
         _context.SaveChanges();
     }
+
+    public int GetUserIdByToken(string token){
+        Token _token = _context.Tokens.Where(t => t.Value == token).FirstOrDefault();
+        if (_token == null){
+            return 0;
+        }
+        return _token.UserId;
+    }
     
+    public string GenerateToken(int userid){
+        var key = _configuration.GetValue<string>("SecretJwt");
+        var keyBytes = Encoding.ASCII.GetBytes(key);
+
+        var claims = new ClaimsIdentity();
+        claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, userid+""));
+
+        var credentialsToken = new SigningCredentials(new SymmetricSecurityKey(keyBytes),
+                                                      SecurityAlgorithms.HmacSha256Signature);
+
+        var tokenDescriptor = new SecurityTokenDescriptor{
+            Subject = claims,
+            Expires = DateTime.UtcNow.AddDays(7),
+            SigningCredentials = credentialsToken
+        };
+
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var tokenConfig = tokenHandler.CreateToken(tokenDescriptor);
+        string stringToken = tokenHandler.WriteToken(tokenConfig);
+        return stringToken;
+    }
         
 }
 
@@ -122,4 +164,6 @@ public interface IUserService{
     void UpdateToken(int userId, string token,DateTime expiresAt);
 
     void CreateToken(int userId, string token,DateTime expiresAt);
+    string GenerateToken(int userid);
+    int GetUserIdByToken(string token);
 }

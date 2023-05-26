@@ -38,36 +38,13 @@ public class AuthController : ControllerBase{
             return BadRequest(new {message = "Username or password is incorrect"});
         }
 
-        var claims = new[]
-        {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.UserName),
-            //permisos
-        
-            
-        };
 
-        // obtener el secret key de appsettings.json
-        var secretJwt = _configuration.GetValue<string>("SecretJwt");
-        var key = Encoding.ASCII.GetBytes(secretJwt);
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var tokenDescriptor = new SecurityTokenDescriptor
-        {
-            Subject = new ClaimsIdentity(claims),
-            Expires = DateTime.UtcNow.AddDays(7),
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        };
+        string stringToken = _authRepository.GenerateToken(user.Id);
 
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        string tokenString = tokenHandler.WriteToken(token);
-        //refresh token
-
-        // Se genera el token JWT
-
-        _authRepository.CreateToken(user.Id, tokenString, DateTime.UtcNow.AddDays(7));
+        _authRepository.CreateToken(user.Id, stringToken, DateTime.UtcNow.AddDays(7));
         
 
-        return Ok(new LoginResponse(user.UserName, user.Email, tokenString));
+        return Ok(new LoginResponse(user.UserName, user.Email, stringToken));
         
     }
 

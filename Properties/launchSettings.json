@@ -29,6 +29,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
@@ -36,6 +37,16 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "Tests": {
+        "commandName": "test",
+        "dotnetRunMessages": "true",
+        "environmentVariables": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        },
+        "workingDirectory": "C:\\Users\\clien\\Documents\\GitHub\\api_recomendation\\Services",
+        "project": "Tests/Tests.csproj"
     }
+    
   }
 }

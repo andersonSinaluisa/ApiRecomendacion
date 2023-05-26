@@ -23,6 +23,7 @@ namespace api_recomendation.Models.Core
 
         public virtual Profile? Profile { get; set; }
 
+        
         public virtual AttributeEntity? AttributeEntity { get; set; }
     }
 }

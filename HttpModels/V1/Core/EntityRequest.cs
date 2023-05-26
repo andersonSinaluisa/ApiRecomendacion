@@ -12,6 +12,8 @@ namespace api_recomendation.HttpModels.V1.Core
         [Required(ErrorMessage = "Descripción requerida")]
         public string? Description { get; set; }
 
+        [Required(ErrorMessage = "Identificador requerido")]
+        public string? Indentifier { get; set; }
 
         public ICollection<AttributeEntityRequest>? Attributes { get; set; }
     

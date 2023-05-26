@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\clien\\Documents\\GitHub\\api_recomendation\\api_recomendation.csproj": {}
+    "C:\\Users\\clien\\Documents\\GitHub\\SystemRecommendation\\api_recomendation\\api_recomendation.csproj": {}
   },
   "projects": {
-    "C:\\Users\\clien\\Documents\\GitHub\\api_recomendation\\api_recomendation.csproj": {
+    "C:\\Users\\clien\\Documents\\GitHub\\SystemRecommendation\\api_recomendation\\api_recomendation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\clien\\Documents\\GitHub\\api_recomendation\\api_recomendation.csproj",
+        "projectUniqueName": "C:\\Users\\clien\\Documents\\GitHub\\SystemRecommendation\\api_recomendation\\api_recomendation.csproj",
         "projectName": "api_recomendation",
-        "projectPath": "C:\\Users\\clien\\Documents\\GitHub\\api_recomendation\\api_recomendation.csproj",
+        "projectPath": "C:\\Users\\clien\\Documents\\GitHub\\SystemRecommendation\\api_recomendation\\api_recomendation.csproj",
         "packagesPath": "C:\\Users\\clien\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\clien\\Documents\\GitHub\\api_recomendation\\obj\\",
+        "outputPath": "C:\\Users\\clien\\Documents\\GitHub\\SystemRecommendation\\api_recomendation\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\clien\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -68,6 +68,14 @@
               "target": "Package",
               "version": "[7.0.5, )"
             },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.18.4, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[7.0.4, )"
@@ -78,7 +86,7 @@
             },
             "xunit": {
               "target": "Package",
-              "version": "[2.5.0-pre.11, )"
+              "version": "[2.4.2, )"
             }
           },
           "imports": [
