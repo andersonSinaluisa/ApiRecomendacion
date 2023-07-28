@@ -1,0 +1,63 @@
+<main class="bg-slate-200">
+
+    <app-navbar-shop></app-navbar-shop>
+    <app-list [title]="'Avatares'">
+        <!--ngFor of products-->
+        <!--select filters-->
+        <div filters>
+
+            <div class="flex flex-row gap-3 mt-5">
+                <div>
+                    <label for="category" class="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
+                    <div class="relative mt-2 rounded-md shadow-sm">
+
+                        <input type="text" name="name" id="name" (change)="setName($event)"
+                            class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-6 sm:text-sm sm:leading-6"
+                            placeholder="Name">
+                    </div>
+                </div>
+                <div>
+                    <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Price</label>
+                    <div class="relative mt-2 rounded-md shadow-sm">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <span class="text-gray-500 sm:text-sm">$</span>
+                        </div>
+                        <input type="text" name="price" id="price" (change)="setPrice($event)"
+                            class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-6 sm:text-sm sm:leading-6"
+                            placeholder="0.00">
+
+                    </div>
+                </div>
+                <div class="relative mt-5">
+                    <div *ngIf="isLoading; else button">
+                        <div class="flex items-center justify-center">
+                            <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
+                        </div>
+
+                    </div>
+                    <ng-template #button>
+                        <button type="button" (click)="search()"
+                            class="inline-flex relative mt-2  justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-900 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-6 sm:text-sm">
+                            Search
+                        </button>
+                    </ng-template>
+
+                </div>
+            </div>
+            <hr class="mt-5 bg-black">
+
+
+        </div>
+        <div *ngIf="isLoading">
+            <div class="flex items-center justify-center">
+                <p class="text-gray-900">Searching...</p>
+            </div>
+        </div>
+        <div class="flex flex-row" *ngFor="let product of products" #productos>
+            <app-card-item [imagenes]="product.images" [nombre]="product.title" [precio]="product.price"
+                [descripcion]="product.description"></app-card-item>
+        </div>
+
+
+    </app-list>
+</main>

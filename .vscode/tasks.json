@@ -1,0 +1,45 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "build-api",
+        "command": "dotnet",
+        "type": "shell",
+        "args": [
+          "build",
+          "${workspaceFolder}/api_recomendation.csproj"
+        ],
+        "problemMatcher": "$msCompile"
+      },
+      {
+        "label": "run-api",
+        "command": "dotnet",
+        "type": "shell",
+        "args": [
+          "run",
+          "--project",
+          "${workspaceFolder}/api_recomendation.csproj"
+        ],
+        "problemMatcher": "$msCompile"
+      },
+      {
+        "label": "build",
+        "type": "shell",
+        "command": "npx",
+        "args": ["ng","build"],
+        "options": {
+          "cwd": "${workspaceFolder}/recommendationfront"
+        },
+      },
+      {
+        "label": "serve",
+        "type": "shell",
+        "command": "npx",
+        "args": ["ng","serve"],
+        "options": {
+          "cwd": "${workspaceFolder}/recommendationfront"
+        },
+      }
+    ]
+  }
+  
