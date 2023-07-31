@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using api_recomendation.Models.Auth;
 using api_recomendation.Models.Core;
 using api_recomendation.Models.Bussiness;
+using api_recomendation.Models.Core.Bussiness;
+
 namespace api_recomendation.Config.DatabaseContext;
 
 public class DatabaseContext : DbContext
@@ -32,10 +34,28 @@ public class DatabaseContext : DbContext
 
     public DbSet<AttributeEntityProfile>? AttributeEntityProfiles { get; set; }
 
+    public DbSet<ConfigUser>? ConfigUsers { get; set; }
+
+    public DbSet<Invoice>? Invoices { get; set; }
+
+    public DbSet<Tracking>? Trackings { get; set; }
+
+    public DbSet<Subscription>? Subscriptions { get; set; }
+
+    public DbSet<PaymentMethod>? PaymentMethods { get; set; }
 
     public DbSet<ApiClient>? ApiClients { get; set; }
 
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        // ... Opciones de configuración del DbContext ...
+
+        // Registrar el interceptor de auditoría
+        optionsBuilder.AddInterceptors(new AuditInterceptor());
+    }
+
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
        
@@ -78,7 +98,7 @@ public class DatabaseContext : DbContext
                 UserName = "demo"
             });
         
-
+        
 
 
 

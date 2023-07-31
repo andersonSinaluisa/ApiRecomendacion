@@ -1,6 +1,7 @@
 using api_recomendation.HttpModels.V1.Admin;
 using api_recomendation.Services.Admin;
 using api_recomendation.Services.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api_recomendation.Controllers.Api.V1.Admin;
@@ -8,6 +9,7 @@ namespace api_recomendation.Controllers.Api.V1.Admin;
 
 [ApiController]
 [Route("api/v1/admin/[controller]")]
+[Authorize]	
 public class ApiClientController: ControllerBase {
 
     private readonly IApiClientService _apiClientService;

@@ -2,4 +2,4 @@
 set -e
 
 # Iniciar la aplicación
-dotnet api_recomendation.dll migrate
+dotnet api_recomendation.dll

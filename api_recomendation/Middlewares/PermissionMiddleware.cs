@@ -23,14 +23,12 @@ namespace api_recomendation.Middlewares
 
         private readonly IUserService _userService;
 
-        public PermissionMiddleware(RequestDelegate next, DatabaseContext context, IUserService userService)
+        public PermissionMiddleware(RequestDelegate next)
         {
             _next = next;
-            _userService = userService;
-            _context = context;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task Invoke(HttpContext context, DatabaseContext _context, IUserService _userService)
         {
             var endpoint = context.Request.Path.Value;
             var method = context.Request.Method;

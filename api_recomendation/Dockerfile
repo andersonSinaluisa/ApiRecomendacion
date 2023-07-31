@@ -28,4 +28,5 @@ EXPOSE 80
 # Iniciar la aplicación al iniciar el contenedor
 COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
+
 ENTRYPOINT ["./entrypoint.sh"]

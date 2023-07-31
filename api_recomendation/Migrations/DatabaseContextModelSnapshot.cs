@@ -235,6 +235,42 @@ namespace api_recomendation.Migrations
                             Endpoint = "AuthController",
                             Method = "POST",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Action = "Add",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Endpoint = "ApiClientController",
+                            Method = "POST",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Action = "GetByToken",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Endpoint = "ApiClientController",
+                            Method = "GET",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Action = "Checkout",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Endpoint = "CheckoutController",
+                            Method = "POST",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Action = "Get",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Endpoint = "Profile",
+                            Method = "GET",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -290,18 +326,18 @@ namespace api_recomendation.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 7, 26, 16, 57, 26, 901, DateTimeKind.Local).AddTicks(9648),
+                            CreatedAt = new DateTime(2023, 7, 28, 16, 26, 47, 460, DateTimeKind.Local).AddTicks(6806),
                             Description = "admin",
                             Name = "admin",
-                            UpdatedAt = new DateTime(2023, 7, 26, 16, 57, 26, 901, DateTimeKind.Local).AddTicks(9661)
+                            UpdatedAt = new DateTime(2023, 7, 28, 16, 26, 47, 460, DateTimeKind.Local).AddTicks(6820)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 7, 26, 16, 57, 26, 901, DateTimeKind.Local).AddTicks(9664),
+                            CreatedAt = new DateTime(2023, 7, 28, 16, 26, 47, 460, DateTimeKind.Local).AddTicks(6823),
                             Description = "user",
                             Name = "user",
-                            UpdatedAt = new DateTime(2023, 7, 26, 16, 57, 26, 901, DateTimeKind.Local).AddTicks(9664)
+                            UpdatedAt = new DateTime(2023, 7, 28, 16, 26, 47, 460, DateTimeKind.Local).AddTicks(6823)
                         });
                 });
 
@@ -373,6 +409,9 @@ namespace api_recomendation.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("SubscriptionsId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("text");
@@ -381,25 +420,207 @@ namespace api_recomendation.Migrations
 
                     b.HasIndex("RoleId");
 
+                    b.HasIndex("SubscriptionsId");
+
                     b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            DateJoined = new DateTime(2023, 7, 26, 16, 57, 27, 37, DateTimeKind.Local).AddTicks(4467),
+                            DateJoined = new DateTime(2023, 7, 28, 16, 26, 47, 547, DateTimeKind.Local).AddTicks(5006),
                             Email = "demo@mail.com",
                             IsAdmin = false,
                             IsAuthenticated = false,
                             IsStaff = false,
                             IsSuperUser = false,
-                            LastLogin = new DateTime(2023, 7, 26, 16, 57, 27, 37, DateTimeKind.Local).AddTicks(4481),
+                            LastLogin = new DateTime(2023, 7, 28, 16, 26, 47, 547, DateTimeKind.Local).AddTicks(5025),
                             LastName = "demo",
                             Name = "demo",
-                            Password = "$2a$10$gl7AsG0C06BIqnpt96NcaeASTbv/nRin6L4e0h9BUtk8AYdYFT1si",
+                            Password = "$2a$10$ELgz0bNDN.SV5Q.sbqUcvuhi7HT0GsU6j5YeXZai6qVTANO/jDRRq",
                             RoleId = 2,
                             UserName = "demo"
                         });
+                });
+
+            modelBuilder.Entity("api_recomendation.Models.Bussiness.ApiClient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Client")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ApiClients");
+                });
+
+            modelBuilder.Entity("api_recomendation.Models.Bussiness.ConfigUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Timezone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ConfigUsers");
+                });
+
+            modelBuilder.Entity("api_recomendation.Models.Bussiness.Invoice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<decimal>("Discount")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("SubTotal")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("Taxes")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Invoices");
+                });
+
+            modelBuilder.Entity("api_recomendation.Models.Bussiness.PaymentMethod", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaymentMethods");
+                });
+
+            modelBuilder.Entity("api_recomendation.Models.Bussiness.Tracking", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Ip")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Method")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Query")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Response")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Route")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("StatusCode")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("StatusMessage")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserAgent")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Trackings");
                 });
 
             modelBuilder.Entity("api_recomendation.Models.Core.AttributeEntity", b =>
@@ -466,6 +687,44 @@ namespace api_recomendation.Migrations
                     b.HasIndex("ProfileId");
 
                     b.ToTable("AttributeEntityProfiles");
+                });
+
+            modelBuilder.Entity("api_recomendation.Models.Core.Bussiness.Subscription", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MaxEntities")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MaxProfiles")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MaxRecommendations")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MaxRequests")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MaxUsers")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subscriptions");
                 });
 
             modelBuilder.Entity("api_recomendation.Models.Core.Entity", b =>
@@ -657,7 +916,33 @@ namespace api_recomendation.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("api_recomendation.Models.Core.Bussiness.Subscription", "Subscriptions")
+                        .WithMany()
+                        .HasForeignKey("SubscriptionsId");
+
                     b.Navigation("Role");
+
+                    b.Navigation("Subscriptions");
+                });
+
+            modelBuilder.Entity("api_recomendation.Models.Bussiness.ConfigUser", b =>
+                {
+                    b.HasOne("api_recomendation.Models.Auth.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("api_recomendation.Models.Bussiness.Tracking", b =>
+                {
+                    b.HasOne("api_recomendation.Models.Auth.User", null)
+                        .WithMany("Trackings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("api_recomendation.Models.Core.AttributeEntity", b =>
@@ -753,6 +1038,11 @@ namespace api_recomendation.Migrations
             modelBuilder.Entity("api_recomendation.Models.Auth.Role", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("api_recomendation.Models.Auth.User", b =>
+                {
+                    b.Navigation("Trackings");
                 });
 
             modelBuilder.Entity("api_recomendation.Models.Core.Entity", b =>
