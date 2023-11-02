@@ -6,8 +6,6 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: recomendation_db
-    volumes:
-      - db_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
   
@@ -20,8 +18,6 @@ services:
     depends_on:
       - db
     
-    volumes:
-      - ./api_recomendation:/app
 
     environment:
       - ASPNETCORE_ENVIRONMENT=Development

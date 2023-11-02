@@ -1096,3 +1096,15 @@ C:\Users\User\Documents\GitHub\ApiRecomendacion\api_recomendation\bin\Debug\net7
 C:\Users\User\Documents\GitHub\ApiRecomendacion\api_recomendation\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\User\Documents\GitHub\ApiRecomendacion\api_recomendation\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\User\Documents\GitHub\ApiRecomendacion\api_recomendation\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\clien\Documents\GitHub\SystemRecommendation\api_recomendation\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\clien\Documents\GitHub\SystemRecommendation\api_recomendation\bin\Debug\net7.0\Stripe.net.dll
+C:\Users\clien\Documents\GitHub\SystemRecommendation\api_recomendation\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
+C:\Users\clien\Documents\GitHub\SystemRecommendation\api_recomendation\bin\Debug\net7.0\System.Drawing.Common.dll
+C:\Users\clien\Documents\GitHub\SystemRecommendation\api_recomendation\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\clien\Documents\GitHub\SystemRecommendation\api_recomendation\bin\Debug\net7.0\System.Security.Permissions.dll
+C:\Users\clien\Documents\GitHub\SystemRecommendation\api_recomendation\bin\Debug\net7.0\System.Windows.Extensions.dll
+C:\Users\clien\Documents\GitHub\SystemRecommendation\api_recomendation\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\clien\Documents\GitHub\SystemRecommendation\api_recomendation\bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Users\clien\Documents\GitHub\SystemRecommendation\api_recomendation\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\clien\Documents\GitHub\SystemRecommendation\api_recomendation\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\clien\Documents\GitHub\SystemRecommendation\api_recomendation\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
