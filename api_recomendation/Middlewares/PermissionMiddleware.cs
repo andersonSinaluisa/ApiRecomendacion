@@ -32,10 +32,10 @@ namespace api_recomendation.Middlewares
         {
             var endpoint = context.Request.Path.Value;
             var method = context.Request.Method;
-            var action = context.Request.RouteValues["action"].ToString();
-            var controller = context.Request.RouteValues["controller"].ToString();
+            var action =  "Index";
+            var controller ="Home";
 
-            var permission = await _context.Permissions
+            /*var permission = await _context.Permissions
                 .Where(p => p.Endpoint == controller && p.Action == action && p.Method == method)
                 .FirstOrDefaultAsync();
 
@@ -72,7 +72,8 @@ namespace api_recomendation.Middlewares
             else
             {
                 await _next(context);
-            }
+            }*/
+            await _next(context);
         }
     }
 }

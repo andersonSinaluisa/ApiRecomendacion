@@ -6,6 +6,8 @@ using Stripe;
 namespace api_recomendation.Controllers.Api.V1.Admin;
 
 [Route("api/v1/admin/[controller]")]
+//ignore swagger
+[ApiExplorerSettings(IgnoreApi = true)]
 public class CheckoutController: ControllerBase{
 
 
