@@ -39,8 +39,8 @@ services:
 
     volumes:
       - ./deploy/nginx.conf:/etc/nginx/conf.d/default.conf
-      - /etc/letsencrypt/live/recomendacion.api.andersonsinaluisa.com/fullchain.pem:/etc/letsencrypt/live/recomendacion.api.andersonsinaluisa.com/fullchain.pem
-      - /etc/letsencrypt/live/recomendacion.api.andersonsinaluisa.com/privkey.pem:/etc/letsencrypt/live/recomendacion.api.andersonsinaluisa.com/privkey.pem
+      - ./fullchain.pem:/etc/letsencrypt/live/recomendacion.api.andersonsinaluisa.com/fullchain.pem
+      - ./privkey.pem:/etc/letsencrypt/live/recomendacion.api.andersonsinaluisa.com/privkey.pem
 
 networks:
   my_network:
